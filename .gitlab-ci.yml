@@ -20,4 +20,4 @@ deploy_gcp:
   before_script:
     - chmod 400 $SSH_KEY
   script:
-    - ssh -o StrictHostKeyChecking=no -i #SSH_KEY gcp@SSH_SERVER "sudo rm -RF ./DIO-CICD/ && sudo gitclone https://github.com/andreazevedo80/DIO-CICD.git" && cd DIO-CICD && sudo chmod +x ./script.sh && sudo ./script.sh"
+    - ssh -o StrictHostKeyChecking=no -i #SSH_KEY gcp@SSH_SERVER "sudo rm -RF ./DIO-CICD/ && sudo gitclone https://github.com/andreazevedo80/DIO-CICD.git" && cd DIO-CICD && sudo chmod +x ./script.sh && ./script.sh"
