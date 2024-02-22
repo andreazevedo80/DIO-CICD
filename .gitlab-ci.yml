@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy_gcp
 
 build_images:
   stage: build
@@ -13,3 +14,10 @@ build_images:
   script:
     - docker build -t andreazevedo80/app-cidc-dio:1.0 app/.
     - docker push andreazevedo80/app-cicd-dio:1.0
+
+deploy_gcp:
+  stage: deploy_gcp
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i #SSH_KEY gcp@SSH_SERVER "sudo rm -RF ./DIO-CICD/ && sudo gitclone https://github.com/andreazevedo80/DIO-CICD.git" && cd DIO-CICD && sudo chmod +x ./script.sh && sudo ./script.sh"
